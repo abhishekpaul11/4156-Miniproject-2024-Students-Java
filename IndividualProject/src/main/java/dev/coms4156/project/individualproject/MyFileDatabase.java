@@ -30,7 +30,7 @@ public class MyFileDatabase {
   /**
    * Sets the department mapping of the database.
    *
-   * @param mapping the mapping of department names to Department objects
+   * @param mapping the mapping of department names to department objects
    */
   public void setMapping(Map<String, Department> mapping) {
     this.departmentMapping = mapping;
@@ -106,8 +106,8 @@ public class MyFileDatabase {
   }
 
   /** The path to the file containing the database entries. */
-  private String filePath;
+  private final String filePath;
 
-  /** The mapping of department names to Department objects. */
+  /** The mapping of department names to department objects. */
   private Map<String, Department> departmentMapping;
 }
