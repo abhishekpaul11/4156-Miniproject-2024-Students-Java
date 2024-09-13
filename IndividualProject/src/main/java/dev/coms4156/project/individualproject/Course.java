@@ -60,6 +60,7 @@ public class Course implements Serializable {
   }
 
 
+  @Override
   public String toString() {
     return "\nInstructor: " + instructorName + "; Location: " + courseLocation + "; Time: "
       + courseTimeSlot;
