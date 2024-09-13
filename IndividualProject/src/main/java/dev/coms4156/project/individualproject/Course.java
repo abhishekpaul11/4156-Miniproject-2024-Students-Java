@@ -59,6 +59,10 @@ public class Course implements Serializable {
     return this.courseTimeSlot;
   }
 
+  public int getEnrolledStudentCount() {
+    return this.enrolledStudentCount;
+  }
+
 
   @Override
   public String toString() {
