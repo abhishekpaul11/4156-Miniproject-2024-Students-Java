@@ -93,6 +93,18 @@ public class MyFileDatabase {
     return result.toString();
   }
 
+  /**
+   * Returns a duplicate representation of the database.
+   * To be used to generate a fresh copy before each test.
+   *
+   * @return a string representation of the database
+   */
+  public MyFileDatabase duplicate() {
+    MyFileDatabase duplicateDatabase = new MyFileDatabase(1, this.filePath);
+    duplicateDatabase.setMapping(this.departmentMapping);
+    return duplicateDatabase;
+  }
+
   /** The path to the file containing the database entries. */
   private String filePath;
 

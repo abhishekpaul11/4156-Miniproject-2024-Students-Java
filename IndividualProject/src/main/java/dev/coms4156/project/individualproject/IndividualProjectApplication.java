@@ -3,10 +3,10 @@ package dev.coms4156.project.individualproject;
 import jakarta.annotation.PreDestroy;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * Class contains all the startup logic for the application.
@@ -21,6 +21,9 @@ public class IndividualProjectApplication implements CommandLineRunner {
   public static MyFileDatabase myFileDatabase;
   private static boolean saveData = true;
 
+  //Context of the application
+  private static ConfigurableApplicationContext context;
+
   /**
    * The main launcher for the service all it does
    * is make a call to the overridden run method.
@@ -29,7 +32,17 @@ public class IndividualProjectApplication implements CommandLineRunner {
    *             runtime arguments
    */
   public static void main(String[] args) {
-    SpringApplication.run(IndividualProjectApplication.class, args);
+    context = SpringApplication.run(IndividualProjectApplication.class, args);
+  }
+
+
+  /**
+   * This is used to terminate the running application
+   * programmatically. To be used after the integration
+   * test suite has finished running.
+   */
+  public static void stopApplication() {
+    context.close();
   }
 
   /**
