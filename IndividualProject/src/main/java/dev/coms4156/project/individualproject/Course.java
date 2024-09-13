@@ -2,6 +2,9 @@ package dev.coms4156.project.individualproject;
 
 import java.io.*;
 
+/**
+ * This class represents a Course with all its related meta-data.
+ */
 public class Course implements Serializable {
 
   /**

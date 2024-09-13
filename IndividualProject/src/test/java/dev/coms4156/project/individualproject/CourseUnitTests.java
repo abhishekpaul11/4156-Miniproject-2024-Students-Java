@@ -4,8 +4,9 @@ import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * This is a test class for all the methods in the Course class.
+ */
 @SpringBootTest
 @ContextConfiguration
 public class CourseUnitTests {
