@@ -25,7 +25,7 @@ public class IndividualProjectApplication implements CommandLineRunner {
   private static ConfigurableApplicationContext context;
 
   //File path of the stored myFileDatabase
-  private final String filePath = "./data.txt";
+  private static final String filePath = "./data.txt";
 
   /**
    * The main launcher for the service all it does
