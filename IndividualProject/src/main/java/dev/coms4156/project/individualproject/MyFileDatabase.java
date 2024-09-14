@@ -1,6 +1,7 @@
 package dev.coms4156.project.individualproject;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -49,6 +50,10 @@ public class MyFileDatabase {
       } else {
         throw new IllegalArgumentException("Invalid object type in file.");
       }
+    } catch (FileNotFoundException e) {
+      System.err.println("File not found: " + filePath);
+      e.printStackTrace();
+      return new HashMap<>();
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();
       return new HashMap<>();
