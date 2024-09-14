@@ -24,6 +24,9 @@ public class IndividualProjectApplication implements CommandLineRunner {
   //Context of the application
   private static ConfigurableApplicationContext context;
 
+  //File path of the stored myFileDatabase
+  private final String filePath = "./data.txt";
+
   /**
    * The main launcher for the service all it does
    * is make a call to the overridden run method.
@@ -67,13 +70,13 @@ public class IndividualProjectApplication implements CommandLineRunner {
   public void run(String[] args) {
     for (String arg : args) {
       if ("setup".equals(arg)) {
-        myFileDatabase = new MyFileDatabase(1, "./data.txt");
+        myFileDatabase = new MyFileDatabase(1, filePath);
         resetDataFile();
         System.out.println("System Setup");
         return;
       }
     }
-    myFileDatabase = new MyFileDatabase(0, "./data.txt");
+    myFileDatabase = new MyFileDatabase(0, filePath);
     System.out.println("Start up");
   }
 
