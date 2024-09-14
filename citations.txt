@@ -1,0 +1,5 @@
+CITATIONS
+
+1. PMD maven plugin - https://docs.pmd-code.org/latest/pmd_userdocs_tools_maven.html#running-the-pmd-plugin
+
+2. MockMvc tests for Spring Boot Rest Controller - https://www.youtube.com/watch?v=Aasp0mWT3Ac

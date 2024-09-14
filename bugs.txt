@@ -1,0 +1,161 @@
+BUGS FOUND
+
+
+Course.java
+
+Bug - enrolledStudentCount was getting initialised to 500
+Fix - initialised it to 0
+
+Bug - enrollStudent() was enrolling a student without checking if course is full
+Fix - add a check to ensure a student is enrolled only if course is not full
+
+Bug - dropStudent() was dropping a student even if enrolledStudentCount is zero
+Fix - drop a student only if there are students present in the course
+
+Bug - getCourseLocation() was returning instructorName
+Fix - getCourseLocation() returns courseLocation
+
+Bug - getInstructorName() was returning courseLocation
+Fix - getInstructorName() returns instructorName
+
+Bug - isCourseFull() checked if enrollmentCapacity is more than enrolledStudentCount
+Fix - isCourseFull() checks if enrollmentCapacity is less than or equal to enrolledStudentCount
+
+
+Department.java
+
+Bug - getNumberOfMajors() returned negative of number of majors
+Fix - getNumberOfMajors() returns positive number of majors
+
+Bug - getDepartmentChair() returned hardcoded string "this.departmentChair"
+Fix - getDepartmentChair() returns the variable this.departmentChair
+
+Bug - dropPersonFromMajor() was dropping a person even when numberOfMajors was zero
+Fix - dropPersonFromMajor() drops a person only when numberOfMajors is more than zero
+
+Bug - toString() method returned hardcoded value "result.toString()"
+Fix - toString() method returns toString() implementation of result
+
+Bug - courses, departmentChair and deptCode were non-final members of the class
+Fix - courses, departmentChair and deptCode are made final as they cannot change for a given department
+
+
+MyFileDatabase.java
+
+Bug - filePath was a non-final member of the class
+Fix - filePath is made final as the path of a MyFileDatabase can never change
+
+Bug - FileNotFoundException was not specifically caught but handled by the parent IOException
+Fix - FileNotFoundException is added above the IOException catch block, so that we can individually catch and handle FileNotFoundException(s), not just along with all kinds of IOException(s).
+
+
+IndividualProjectApplication.java
+
+Bug - The file path was hardcoded to "./data.txt" in the run method
+Fix - "./data.txt" is stored in a separate variable to ensure consistency
+
+
+RouteController.java
+
+Bug - retrieveDepartment(deptCode) returned OK when department was not found and NOT_FOUND when department was found
+Fix - retrieveDepartment(deptCode) returns OK when department is found and NOT_FOUND when department is not found
+
+Bug - retrieveCourse(deptCode, courseCode) returned FORBIDDEN when course was found
+Fix - retrieveCourse(deptCode, courseCode) returns OK when course is found
+
+Bug - In the Java Doc comment of isCourseFull(deptCode, courseCode), it mentioned courseCode is of the course the user wanted to retrieve
+Fix - The comment was updated to mention that courseCode is of the course the user wants to check
+
+Bug - naming issue getMajorCtFromDept(deptCode)
+Fix - renamed to getMajorCountFromDepartment(deptCode)
+
+Bug - getMajorCountFromDepartment(deptCode) returned negative of the number of majors
+Fix - getMajorCountFromDepartment(deptCode) returns positive number of majors
+
+Bug - getMajorCountFromDepartment(deptCode, courseCode) returned FORBIDDEN when department was found
+Fix - getMajorCountFromDepartment(deptCode, courseCode) returns OK when department is found
+
+Bug - response body of findCourseTime(deptCode, courseCode) returned hardcoded string "some time"
+Fix - response body of findCourseTime(deptCode, courseCode) returns actual course time slot
+
+Bug - dropStudent(deptCode, courseCode) method not matching with endpoint name "/dropStudentFromCourse"
+Fix - dropStudent(deptCode, courseCode) method renamed to "dropStudentFromCourse(deptCode, courseCode)"
+
+Bug - internal server errors returned OK
+Fix - internal server errors return INTERNAL_SERVER_ERROR Http status code
+
+
+
+
+PMD CODE VIOLATIONS
+
+
+Course.java
+
+Bug - MissingOverride (The method 'toString()' is missing an @Override annotation.)
+Priority - 3
+Fix - Add the @Override annotation over the toString() method
+
+Bug - LooseCoupling (Avoid using implementation types like 'HashMap'; use the interface instead)
+Priority - 3
+Fix - courses were typed as Map<String, Course> instead of HashMap, while HashMap was used during instantiation
+
+
+Department.java
+
+Bug - Unused Import (java.util.HashMap)
+Priority - 4
+Fix - The unused import was removed
+
+Bug - LooseCoupling (Avoid using implementation types like 'HashMap'; use the interface instead)
+Priority - 3
+Fix - courses were typed as Map<String, Course> instead of HashMap, while HashMap was used during instantiation
+
+Bug - MissingOverride (The method 'toString()' is missing an @Override annotation.)
+Priority - 3
+Fix - Add the @Override annotation over the toString() method
+
+
+IndividualProjectApplication.java
+
+Bug - LooseCoupling (Avoid using implementation types like 'HashMap'; use the interface instead)
+Priority - 3
+Fix - courses and mapping were typed as Map<String, Course> and Map<String, Department> respectively instead of HashMap, while HashMap was used during instantiation
+
+Bug - MissingOverride (The method 'run(String[])' is missing an @Override annotation.)
+Priority - 3
+Fix - Add the @Override annotation over the run(String[]) method
+
+Bug - LiteralsFirstInComparisons (Position literals first in String comparisons)
+Priority - 3
+Fix - args.equals("setup") changed to "setup".equals(args)
+
+Bug - FinalFieldCouldBeStatic (This final field could be made static)
+Priority - 3
+Fix - filePath was made static
+
+
+MyFileDatabase.java
+
+Bug - LooseCoupling (Avoid using implementation types like 'HashMap'; use the interface instead)
+Priority - 3
+Fix - departmentMapping were typed as Map<String, Department> instead of HashMap, while HashMap was used during instantiation
+
+Bug - ReturnEmptyCollectionRatherThanNull (Return an empty collection rather than null)
+Priority - 1
+Fix - deSerializeObjectFromFile() returns new HashMap<String, Department>() for error cases instead of null
+
+
+RouteController.java
+
+Bug - UnnecessaryAnnotationValueElement (Avoid the use of value in annotations when it's the only element)
+Priority - 3
+Fix - All the value annotations in the query params of the routes were removed
+
+Bug - UseLocalesWithCaseConversions (When doing a String.toLowerCase()/toUpperCase() call, use a Locale)
+Priority - 3
+Fix - passing Locale.getDefault() to deptCode.toUpperCase() in retrieveDepartment(deptCode)
+
+Bug - LooseCoupling (Avoid using implementation types like 'HashMap'; use the interface instead)
+Priority - 3
+Fix - courses and departments were typed as Map<String, Course> and Map<String, Department> respectively instead of HashMap, while HashMap was used during instantiation

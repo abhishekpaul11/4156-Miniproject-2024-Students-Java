@@ -1,0 +1,7 @@
+The codebase has been refactored in the following places:
+
+1. In IndividualProjectApplication.java, a ConfigurableApplicationContext object was created that holds a reference to the currently running SpringBoot Application. This is used to terminate the application after completion of the integration tests, via the newly added stop application method.
+
+2. Added a getter method for enrolledStudentCount in Course.java to aid in unit testing.
+
+3. Added a method to duplicate (deep copy) a MyFileDatabase reference in MyFileDatabase.java, to ensure a fresh copy of data is available before each integration test, thus making them independent.
